@@ -1,0 +1,42 @@
+
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Highcharts – enkel figur</title>
+  <!-- Highcharts via CDN -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <!-- Valgfritt: tema eller modul (f.eks. eksport) -->
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; }
+    #container { width: 100%; max-width: 900px; height: 420px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <h1>Eksempelfigur</h1>
+  <div id="container" aria-label="Highcharts figur"></div>
+
+  <script>
+    // Konfigurasjon av en enkel linjediagram
+    Highcharts.chart('container', {
+      chart: { type: 'line' },
+      title: { text: 'Ukentlig aktivitet' },
+      subtitle: { text: 'Demo med Highcharts' },
+      xAxis: { categories: ['Uke 1', 'Uke 2', 'Uke 3', 'Uke 4', 'Uke 5'] },
+      yAxis: { title: { text: 'Antall' } },
+      tooltip: { shared: true, valueSuffix: '' },
+      series: [
+        { name: 'Team A', data: [5, 7, 3, 6, 8] },
+        { name: 'Team B', data: [3, 4, 6, 2, 5] }
+      ],
+      accessibility: {
+        enabled: true,
+        description: 'Linjeplot som viser aktivitet per uke for to team.'
+      },
+      credits: { enabled: false }
+    });
+  </script>
+</body>
+</html>
