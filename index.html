@@ -4,39 +4,123 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Highcharts – enkel figur</title>
+  <title>Highcharts – U.S. Solar Employment Growth</title>
+
   <!-- Highcharts via CDN -->
   <script src="https://code.highcharts.com/highcharts.js"></script>
-  <!-- Valgfritt: tema eller modul (f.eks. eksport) -->
+  <!-- Valgfritt: moduler du vil ha med (eksport, tilgjengelighet, respons, etc.) -->
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; }
-    #container { width: 100%; max-width: 900px; height: 420px; margin: 0 auto; }
+    :root { color-scheme: light dark; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      margin: 2rem;
+    }
+    #container {
+      width: 100%;
+      max-width: 900px;
+      height: 460px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 1.4rem; margin-bottom: 1rem; }
   </style>
 </head>
 <body>
-  <h1>Eksempelfigur</h1>
-  <div id="container" aria-label="Highcharts figur"></div>
+  <h1>U.S. Solar Employment Growth</h1>
+  <!-- Beholderen som Highcharts kobler seg til -->
+  <div id="container" role="img" aria-label="Highcharts-figur for sysselsetting i solsektoren"></div>
 
+  <!-- Din Highcharts-kode -->
   <script>
-    // Konfigurasjon av en enkel linjediagram
     Highcharts.chart('container', {
-      chart: { type: 'line' },
-      title: { text: 'Ukentlig aktivitet' },
-      subtitle: { text: 'Demo med Highcharts' },
-      xAxis: { categories: ['Uke 1', 'Uke 2', 'Uke 3', 'Uke 4', 'Uke 5'] },
-      yAxis: { title: { text: 'Antall' } },
-      tooltip: { shared: true, valueSuffix: '' },
-      series: [
-        { name: 'Team A', data: [5, 7, 3, 6, 8] },
-        { name: 'Team B', data: [3, 4, 6, 2, 5] }
-      ],
-      accessibility: {
-        enabled: true,
-        description: 'Linjeplot som viser aktivitet per uke for to team.'
+
+      title: {
+        text: 'U.S Solar Employment Growth',
+        align: 'left'
       },
+
+      subtitle: {
+        text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank" rel="noopener">IREC</a>.',
+        align: 'left'
+      },
+
+      yAxis: {
+        title: {
+          text: 'Number of Employees'
+        }
+      },
+
+      xAxis: {
+        accessibility: {
+          rangeDescription: 'Range: 2010 to 2022'
+        }
+      },
+
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+      },
+
+      plotOptions: {
+        series: {
+          label: {
+            connectorAllowed: false
+          },
+          pointStart: 2010
+        }
+      },
+
+      series: [{
+        name: 'Installation & Developers',
+        data: [
+          43934, 48656, 65165, 81827, 112143, 142383,
+          171533, 165174, 155157, 161454, 154610, 168960, 171558
+        ]
+      }, {
+        name: 'Manufacturing',
+        data: [
+          24916, 37941, 29742, 29851, 32490, 30282,
+          38121, 36885, 33726, 34243, 31050, 33099, 33473
+        ]
+      }, {
+        name: 'Sales & Distribution',
+        data: [
+          11744, 30000, 16005, 19771, 20185, 24377,
+          32147, 30912, 29243, 29213, 25663, 28978, 30618
+        ]
+      }, {
+        name: 'Operations & Maintenance',
+        data: [
+          null, null, null, null, null, null, null,
+          null, 11164, 11218, 10077, 12530, 16585
+        ]
+      }, {
+        name: 'Other',
+        data: [
+          21908, 5548, 8105, 11248, 8989, 11816, 18274,
+          17300, 13053, 11906, 10073, 11471, 11648
+        ]
+      }],
+
+      responsive: {
+        rules: [{
+          condition: { maxWidth: 500 },
+          chartOptions: {
+            legend: {
+              layout: 'horizontal',
+              align: 'center',
+              verticalAlign: 'bottom'
+            }
+          }
+        }]
+      },
+
       credits: { enabled: false }
     });
   </script>
 </body>
 </html>
+``
